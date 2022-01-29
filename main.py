@@ -8,12 +8,7 @@ from tkinter import scrolledtext
 
 
 def analyze(sensor):
-    info = {
-        "Accelerometer": {"Avg": 0, "Max": 0, "Min": 0},
-        "Gyro": {"Avg": 0, "Max": 0, "Min": 0}
-    }
-    info = pd.DataFrame(info)
-
+    info = sensor.describe()
     return info
 
 
@@ -34,7 +29,7 @@ def main(log):
             info.to_csv(outfile)
         except Exception as e:
             print(e)
-            log.insert("end", "ファイルの中身が不正です\n")
+            log.insert("end", "ファイルの中身が不正です。センサーファイルを指定してください。\n")
 
         file.close()
 
